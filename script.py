@@ -4,13 +4,24 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 import plotly.express as px
 import pandas as pd
+import json
 
 app = dash.Dash(__name__)
 
 app.layout = html.Div([
+    html.Img(src="assets/Dogecoin_Logo.png", width="100"),
     html.H1("Cours du Doge Coin", className='title'),
-    html.P("Ce graphique donne l'évolution du cours du Doge Coin", className='description'),
+    html.P("Évolution du cours du Doge Coin au cours du temps", className='description'),
     dcc.Graph(id='live-graph', className='graph'),
+    html.P("Rapport quotidien", className='description'),
+    html.Table(id="stats"),
+
+
+    html.Div(className="footer", children=[
+        html.Hr(),
+        html.Span("Thomas COUDREAU, IF2")
+    ]),
+
     dcc.Interval(
         id='interval-component',
         interval=2*60*1000, # 2 minutes
@@ -21,12 +32,19 @@ app.layout = html.Div([
 
 @app.callback(
     Output('data-store', 'data'),
+    Output('stats', 'children'),
     Input('interval-component', 'n_intervals')
 )
 def update_data(n):
     # Lecture du CSV
     data = pd.read_csv("history.csv")
-    return data.to_dict()
+
+    # Affichage du rapport quotidien
+    with open("/home/thomas/projet/stats.json", "r") as infile:
+        stats = json.load(infile)
+    children = [html.Tr(children=[html.Td(x) , html.Td(stats[x])]) for x in stats.keys()]
+
+    return data.to_dict(), children
 
 @app.callback(
     Output('live-graph', 'figure'),
