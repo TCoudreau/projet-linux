@@ -4,8 +4,11 @@
 
 
 `script.sh` : web scraper
+
 `script.py` : tableau de bord Dash
+
 `stats.py` : génère les rapports quotidiens (`stats.json`)
+
 `history.csv` : prix du doge
 
 `assets` : image + css
