@@ -19,7 +19,7 @@ evol = (start-end)/start
 minimum = doge_filtre['doge'].min()
 maximum = doge_filtre['doge'].max()
 
-stats = { "Volatilité": vol, "Open": start, "Close": end, "Evolution": str(evol*100) + "%", "Minimum": minimum, "Maximum": maximum }
+stats = { "Volatilité": vol, "Open": start, "Close": end, "Evolution": str(evol*100) + "%", "Low": minimum, "High": maximum }
 
 with open("/home/thomas/projet/stats.json", "w") as outfile:
     json.dump(stats, outfile)

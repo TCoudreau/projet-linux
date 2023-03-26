@@ -13,10 +13,25 @@
   margin-bottom: 20px;
 }
 
+.box-container {
+  width: 1000px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid gray;
+  box-shadow: 3px 3px 19px 1px rgba(0, 0, 0, 0.6);
+}
+
 .description {
   text-align: justify;
   max-width: 800px;
   margin-bottom: 30px;
+  margin-top: 30px;
+  text-decoration: underline;
 }
 
 .graph {

@@ -12,16 +12,13 @@ app.layout = html.Div([
     html.Img(src="assets/Dogecoin_Logo.png", width="100"),
     html.H1("Cours du Doge Coin", className='title'),
     html.P("Évolution du cours du Doge Coin au cours du temps", className='description'),
-    dcc.Graph(id='live-graph', className='graph'),
+    html.Div(dcc.Graph(id='live-graph', className='graph'), className="box-container"),
     html.P("Rapport quotidien", className='description'),
-    html.Table(id="stats"),
-
-
-    html.Div(className="footer", children=[
+    html.Div(html.Table(id="stats"), className="box-container"),
+    html.Div([
         html.Hr(),
         html.Span("Thomas COUDREAU, IF2")
-    ]),
-
+    ], className="footer"),
     dcc.Interval(
         id='interval-component',
         interval=2*60*1000, # 2 minutes
